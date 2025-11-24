@@ -42,6 +42,29 @@ namespace DremasSystem.Controllers
             return Ok(dreams);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Dream dream)
+        {
+            if (id != dream.Id)
+                return BadRequest();
+
+            _context.Entry(dream).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Dreams.Any(d => d.Id == id))
+                    return NotFound();
+                throw;
+            }
+
+            return NoContent();
+        }
+
+
 
     }
 }
