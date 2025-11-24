@@ -34,5 +34,14 @@ namespace DremasSystem.Controllers
 
             return Ok(dream);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var dreams = await _context.Dreams.ToListAsync();
+            return Ok(dreams);
+        }
+
+
     }
 }
