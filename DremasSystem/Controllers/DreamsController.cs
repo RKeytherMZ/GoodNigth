@@ -64,7 +64,17 @@ namespace DremasSystem.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var dream = await _context.Dreams.FindAsync(id);
+            if (dream == null) return NotFound();
 
+            _context.Dreams.Remove(dream);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
 
     }
 }
