@@ -1,0 +1,6 @@
+@DremasSystem_HostAddress = http://localhost:5022
+
+GET {{DremasSystem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
